@@ -1,16 +1,31 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import React from 'react';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import TextField from '@mui/material/TextField';
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 
 export const App = () => {
   const [messegeList, setMessegeList] = useState([]);
-  const authorRef = React.createRef();
-  const messegeRef = React.createRef();
+  const [author, setAuthor] = useState("");
+  const [text, setText] = useState("");
+
+  const [list, setList] = useState([
+    {
+      name: 'firstchat',
+      id: 1,
+    },
+  ]);
 
 
   let addMessege = () => {
-    let messegeListAuthor = authorRef.current.value;
-    let messegeListMessege = messegeRef.current.value;
+    let messegeListAuthor = author;
+    let messegeListMessege = text;
     let elem = {
       author: messegeListAuthor,
       ms: messegeListMessege,
@@ -33,22 +48,59 @@ export const App = () => {
 
   return (
     <div className="App">
-      <h2>Автор:</h2>
-      <input type="text" className='Input' ref={authorRef}></input>
-      <h2>Сообщение:</h2>
-      <textarea type="text" className='Text' ref={messegeRef}></textarea>
-      <button className='Button' onClick={addMessege}>send</button>
+
+      <TextField
+        id="outlined-basic"
+        label="Имя"
+        variant="outlined"
+        type="text"
+        onChange={(e) => setAuthor(e.target.value)}
+        autoFocus
+      />
+
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Сообщение"
+        multiline
+        maxRows={4}
+        type="text"
+        onChange={(e) => setText(e.target.value)}
+      />
+
+      <Button
+        type="submit"
+        size='large'
+        variant="contained"
+        endIcon={<SendIcon />}
+        onClick={addMessege}>
+        Send
+      </Button>
 
       {messegeList.map((item, index) =>
         <div key={index}>
-          <p className='Who'>{item.author}</p>
+          <p className='Who'>От кого:{item.author}</p>
           <p className='Messege'>{item.ms}</p>
           <hr />
         </div>
-      )
-      }
+      )}
 
-      <p></p>
+      {list.map((item, index) =>
+        <nav key={index} aria-label="secondary mailbox folders">
+          <List>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component="a" href="#simple-list">
+                <ListItemText primary="test" />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </nav>
+      )}
+
     </div >
   );
 }
