@@ -1,0 +1,11 @@
+.body {
+    background-color: rgb(223, 185, 235);
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+.app {
+    display: flex;
+    flex-direction: column;
+}
