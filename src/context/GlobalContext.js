@@ -6,7 +6,7 @@ export const GlobalContext= createContext()
 
 export const GlobalProvider = ({children}) => {
 
-  const title = 'CHAT:'
+  const title = ''
 
   const [items, setItems] = useState([]);
   const [inputs, setInputs] = useState({ title: '', text: '' });
@@ -14,7 +14,7 @@ export const GlobalProvider = ({children}) => {
   const handlerForm = (event) => {
     event.preventDefault()
     console.log('Submit form')
-    axios.post('http://localhost:3001/posts', {
+    axios.post('http://localhost:3000/posts', {
       myId: Math.round(Math.random() * 99),
       title: inputs.title,
       text: inputs.text,

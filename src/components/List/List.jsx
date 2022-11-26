@@ -6,6 +6,7 @@ import Item from '../Item/Item'
 
 export default function List({title}) {
   const posts = useSelector((store) => store.posts)
+
   // console.log(posts)
   return (
     <div>

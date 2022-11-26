@@ -29,14 +29,7 @@ export default function Form({handlerForm, handleInputs, inputs}) {
             id="exampleInputPassword1" 
           />
         </div>
-        <div className="mb-3 form-check">
-          <input 
-            type="checkbox" 
-            className="form-check-input" 
-            id="exampleCheck1" 
-          />
-          <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-        </div>
+
         <button type="submit" className="btn btn-primary">Отправить</button>
       </form>
     </div>
