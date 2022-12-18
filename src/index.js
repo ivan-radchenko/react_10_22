@@ -1,23 +1,43 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
 import './index.css';
+// Сброс стилей (типа normolize.css)
+import CssBaseline from '@mui/material/CssBaseline';
 import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-import {BrowserRouter} from "react-router-dom";
+import { createTheme, ThemeProvider } from '@mui/material'
 
-import {Provider} from 'react-redux'
-import {store} from './store/store'
 
-import {GlobalProvider} from './context/GlobalContext'
+const theme = createTheme({
+  spacing: 8,
+  palette: {
+    mode: 'dark',
+    background: {
+      default: '#000000',
+      paper: '#000000',
+    },
+    primary: {
+      main: '#48ff00',
+    },
+    secondary: {
+      main: '#48ff00',
+    },
+  },
+})
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
 
-    <Provider store={store}>
-        <GlobalProvider>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </GlobalProvider>
-    </Provider>
+  <React.StrictMode>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
+  </React.StrictMode>
+  ,
+  document.getElementById('root')
 );
+reportWebVitals();
